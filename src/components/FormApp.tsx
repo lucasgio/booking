@@ -1,11 +1,10 @@
-import React from "react";
 import { Form } from "rsuite";
 import Button from "rsuite/lib/Button";
 import DatePicker from "rsuite/lib/DatePicker";
 import Icon from "rsuite/lib/Icon";
 import SelectPicker from "rsuite/lib/SelectPicker";
 
-export const FormApp = () => {
+const FormApp = () => {
   const data = [
     {
       label: "Eugenia",
@@ -27,7 +26,7 @@ export const FormApp = () => {
 
 
   return (
-    <React.Fragment>
+    <>
     <Form className="form_booking" onSubmit={()=> formSubmit()}>
       <SelectPicker
         className="selectStyle"
@@ -61,6 +60,8 @@ export const FormApp = () => {
       <Icon icon="search"  /> Search
       </Button>      
     </Form>  
-    </React.Fragment>
+    </>
   );
 };
+
+export default FormApp;

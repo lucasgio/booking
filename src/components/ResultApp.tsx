@@ -3,7 +3,7 @@ import Panel from "rsuite/lib/Panel";
 
 import "../css/style.css";
 
-export const ResultApp = () => {
+const ResultApp = () => {
 
 
   return (
@@ -12,3 +12,6 @@ export const ResultApp = () => {
 
   ) 
 };
+
+
+export default ResultApp;

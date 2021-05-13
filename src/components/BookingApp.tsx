@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container,Panel} from 'rsuite';
 
-import '../css/style.css';
-import { FormApp } from './FormApp';
-import { ResultApp } from './ResultApp';
+import FormApp from './FormApp';
+import ResultApp from './ResultApp';
 
-export const BookingApp = () => {
+
+import '../css/style.css';
+
+const BookingApp = () => {
+
+
+  const [show, setShow] = useState(false);
+
   return (
     <>
       <Container className="show-container">
@@ -16,8 +22,13 @@ export const BookingApp = () => {
       </Container>
 
       <Container>
-          <ResultApp/>
+          {
+            (!show)? <h6 className="info">No hay elementos :( </h6> : <ResultApp/>
+          }
       </Container>
     </>
   )
 };
+
+
+export default BookingApp;
