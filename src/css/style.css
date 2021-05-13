@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+
+html{
+    font-family: 'Open Sans', sans-serif;
+}
+.button{
+    background-color: #00A991;
+}
+
+
+.card{
+    background-color: white;
+    margin: 60px;
+}
+
+
+.form_booking{
+ margin-left: 200px;
+}
+
+.label{
+    z-index: 2;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #00A991;
+}
+
+.result_card{
+    background-color: #00A991;
+    margin: 60px;
+    color: white;
+}
+
+.title{
+    color: white;
+    text-align: center;
+}
+
+.selectStyle{
+    margin-right: 25px;
+}
+.show-container{
+    background-color: #00A991;
+    max-height: 400px;
+    padding: 50px;
+
+}
