@@ -21,23 +21,19 @@ export const useForm = () => {
 
   const {from,to} = form;
 
-
+     
   const getValueFrom = ({target}:any)=>{
-
     setForm({
       ...form,
       from:target.value,
     })
-      
   }
 
   const getValueTo = ({target}:any)=>{
-
     setForm({
       ...form,
       to:target.value,
     })
-      
   }
   
   const fromCity = useGetFromCity(from); 
