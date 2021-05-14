@@ -1,66 +1,32 @@
-import { Form } from "rsuite";
-import Button from "rsuite/lib/Button";
-import DatePicker from "rsuite/lib/DatePicker";
-import Icon from "rsuite/lib/Icon";
-import SelectPicker from "rsuite/lib/SelectPicker";
+import React from "react";
+import { FlexboxGrid, Form, InputPicker } from "rsuite";
+import FlexboxGridItem from "rsuite/lib/FlexboxGrid/FlexboxGridItem";
+import { useForm } from "../hooks/useForm";
+
+
 
 const FormApp = () => {
-  const data = [
-    {
-      label: "Eugenia",
-      value: "Eugenia",
-      role: "Master",
-    },
-    {
-      label: "Kariane",
-      value: "Kariane",
-      role: "Master",
-    },
-  ];
-
-  const formSubmit = () => {
-
-    console.log('hola');
-
-  }
+  const {from,fromCity,toCity,getValueFrom,getValueTo} = useForm();
 
 
   return (
-    <>
-    <Form className="form_booking" onSubmit={()=> formSubmit()}>
-      <SelectPicker
-        className="selectStyle"
-        placeholder="From"
-        data={data}
-        defaultValue={"Origin City"}
-        style={{ width: 224 }}
-      />
-      <SelectPicker
-        className="selectStyle"
-        placeholder="To"
-        data={data}
-        defaultValue={"Origin City"}
-        style={{ width: 224 }}
-      />
-      <DatePicker
-        className="selectStyle"
-        placeholder="Departure"
-        format="DD-MM-YYYY"
-        oneTap
-        style={{ width: 280 }}
-      />
-      <DatePicker
-        className="selectStyle"
-        placeholder="Return"
-        format="DD-MM-YYYY"
-        oneTap
-        style={{ width: 280 }}
-      />
-      <Button color="green" onClick={()=>formSubmit()}>
-      <Icon icon="search"  /> Search
-      </Button>      
-    </Form>  
-    </>
+      <Form>
+        <FlexboxGrid>
+          <FlexboxGridItem colspan={6}> 
+              <InputPicker
+                data={fromCity}
+                valueKey={from}
+                onSearch={(searchKeyword: string, event: React.SyntheticEvent<any, Event>)=>getValueFrom(event)}
+              />
+          </FlexboxGridItem>
+          <FlexboxGridItem colspan={6}> 
+              <InputPicker
+                data={toCity}
+                onSearch={(searchKeyword: string, event: React.SyntheticEvent<any, Event>)=>getValueTo(event)}
+              />
+          </FlexboxGridItem>
+        </FlexboxGrid>
+      </Form>
   );
 };
 
