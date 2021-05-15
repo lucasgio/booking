@@ -12,7 +12,7 @@ export interface City {
 }
 
 
-export type DataItemType = {
+export type ItemDataType = {
     id:string;
     label: string; 
 };

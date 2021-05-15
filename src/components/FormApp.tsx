@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import {
   Button,
   Container,
@@ -9,30 +9,13 @@ import {
   FormGroup,
   InputPicker,
 } from "rsuite";
+import { useFromSubmittion } from "../hooks/useFromSubmittion";
 import { useGetSuggestion } from "../hooks/useGetSuggestion";
-import { FormType } from "../interface/GetCityType";
 
 const FormApp = () => {
-
-  const [data, setData] = useState<FormType>({
-
-    from:"",
-    to:"",
-    dateFrom:new Date(),
-    dateTo:new Date()
-
-  })  
-  
-  const {dateFrom,dateTo} = data;
-  
-  
+  const formRef = React.useRef();
   const { fromCity, toCity, form, setForm } = useGetSuggestion();
-  
-  const handleSubmite = (e:any) => {
-    e.preventDefault();  
-    console.log(dateFrom,dateTo)  
-  };
-
+  const { data,setData,handlerSubmit } = useFromSubmittion();
 
 
   return (
@@ -40,14 +23,20 @@ const FormApp = () => {
       <Container style={{ marginTop: "2rem" }}>
         <FlexboxGrid justify="center">
           <Form 
+            ref={formRef}
+            onChange={setData}
             layout="inline"
+            formValue={data}
           >
             <FormGroup>
-              <FormControl
+              <FormControl 
                 name="from"
                 accepter={InputPicker}
+                placeholder ="From"
+                labelKey="label"
+                valueKey="label"
                 data={fromCity}
-                onSearch={(searchKeyword: string)=>setForm({...form,from:searchKeyword})}
+                onSearch={(value:string)=>setForm({...form,from:value})}
                 style={{ width: 200 }}
               />
             </FormGroup>
@@ -56,31 +45,32 @@ const FormApp = () => {
                 name="to"
                 accepter={InputPicker}
                 data={toCity}
-                onSearch={(searchKeyword: string)=>setForm({...form,to:searchKeyword})}
+                placeholder="To"
+                labelKey="label"
+                valueKey="label"
+                onSearch={(value: string)=>setForm({...form,to:value})}
                 style={{ width: 200 }}
               />
             </FormGroup>
             <FormGroup>
               <FormControl
-                name="fromDate"
+                name="dateFrom"
                 accepter={DatePicker}
-                format={'DD-MM-YYYY'}
+                format={'DD/MM/YYYY'}
                 placeholder={'Departure'}
                 style={{ width: 200 }}
-                onChangeCalendarDate={(dateFrom:Date)=>setData({dateFrom:dateFrom})}
               />
             </FormGroup>
             <FormGroup>
               <FormControl
-                name="toDate"
+                name="dateTo"
                 accepter={DatePicker}
-                format={'DD-MM-YYYY'}
+                format={'DD/MM/YYYY'}
                 placeholder={'Return'}
                 style={{ width: 200 }}
-                onChangeCalendarDate={(dateTo:Date)=>setData({dateTo:dateTo})}
               />
             </FormGroup>
-            <Button color={'green'} onClick={handleSubmite}>Search</Button>
+            <Button color={'green'} onClick={handlerSubmit}>Search</Button>
           </Form>
         </FlexboxGrid>
       </Container>

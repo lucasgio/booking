@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { getCitysApi } from "../api/getCitysApi";
-import {DataItemType, FormType, GetCityAPIType } from "../interface/GetCityType";
+import {ItemDataType, FormType, GetCityAPIType } from "../interface/GetCityType";
 
 
 
 export const useGetSuggestion = () => {
 
-    const [fromCity, setFromCity] = useState<DataItemType[]>([]);
-    const [toCity, setToCity] = useState<DataItemType[]>([]);
+    const [fromCity, setFromCity] = useState<ItemDataType[]>([]);
+    const [toCity, setToCity] = useState<ItemDataType[]>([]);
 
     const [form, setForm] = useState<FormType>({
         from:"Madrid",
@@ -15,6 +15,7 @@ export const useGetSuggestion = () => {
     })
     const {from,to} = form;
 
+    
 
     useEffect(() => {
         getCitysApi.get<GetCityAPIType>(`/locations?term=${from}&location_types=airport`)
@@ -43,6 +44,6 @@ export const useGetSuggestion = () => {
        fromCity,
        toCity,
        form, 
-       setForm 
+       setForm,
     };
 }
