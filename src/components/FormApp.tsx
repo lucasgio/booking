@@ -1,13 +1,15 @@
 import React from "react";
 import { FlexboxGrid, Form, InputPicker } from "rsuite";
 import FlexboxGridItem from "rsuite/lib/FlexboxGrid/FlexboxGridItem";
-import { useForm } from "../hooks/useForm";
+import { useGetSuggestion } from "../hooks/useGetSuggestion";
+
 
 
 
 const FormApp = () => {
-  const {from,fromCity,toCity,getValueFrom,getValueTo} = useForm();
+  
 
+  const { fromCity,toCity,form,setForm } = useGetSuggestion();
 
   return (
       <Form>
@@ -15,14 +17,13 @@ const FormApp = () => {
           <FlexboxGridItem colspan={6}> 
               <InputPicker
                 data={fromCity}
-                valueKey={from}
-                onSearch={(searchKeyword: string, event: React.SyntheticEvent<any, Event>)=>getValueFrom(event)}
+                onSearch={(searchKeyword: string)=>setForm({...form,from:searchKeyword})}
               />
           </FlexboxGridItem>
           <FlexboxGridItem colspan={6}> 
               <InputPicker
-                data={toCity}
-                onSearch={(searchKeyword: string, event: React.SyntheticEvent<any, Event>)=>getValueTo(event)}
+                data      ={toCity}
+                onSearch={(searchKeyword: string)=>setForm({...form,to:searchKeyword})}
               />
           </FlexboxGridItem>
         </FlexboxGrid>
