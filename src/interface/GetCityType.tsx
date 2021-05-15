@@ -20,8 +20,8 @@ export type DataItemType = {
 export type FormType = {
     from?:string;
     to?:string;
-    dateFrom?:string;
-    dateTo?:string;
+    dateFrom?:Date;
+    dateTo?:Date;
 }; 
 
 
