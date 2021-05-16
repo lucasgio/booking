@@ -34,7 +34,7 @@ const FormApp = () => {
                 accepter={InputPicker}
                 placeholder ="From"
                 labelKey="label"
-                valueKey="label"
+                valueKey="id"
                 data={fromCity}
                 onSearch={(value:string)=>setForm({...form,from:value})}
                 style={{ width: 200 }}
@@ -47,7 +47,7 @@ const FormApp = () => {
                 data={toCity}
                 placeholder="To"
                 labelKey="label"
-                valueKey="label"
+                valueKey="id"
                 onSearch={(value: string)=>setForm({...form,to:value})}
                 style={{ width: 200 }}
               />

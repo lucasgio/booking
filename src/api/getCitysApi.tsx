@@ -7,3 +7,10 @@ export const getCitysApi = axios.create({
     
 });
     
+export const getResultFlights = axios.create({
+
+     baseURL:'https://api.skypicker.com'
+    
+});
+    
+

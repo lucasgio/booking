@@ -1,4 +1,4 @@
-export interface GetCityAPIType {
+export interface TypeCitySuggestion {
     locations:         City[];
 }
 

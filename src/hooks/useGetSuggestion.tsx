@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCitysApi } from "../api/getCitysApi";
-import {ItemDataType, FormType, GetCityAPIType } from "../interface/GetCityType";
+import {ItemDataType, FormType, TypeCitySuggestion } from "../interface/TypeCitySuggestion";
 
 
 
@@ -15,10 +15,10 @@ export const useGetSuggestion = () => {
     })
     const {from,to} = form;
 
-    
+
 
     useEffect(() => {
-        getCitysApi.get<GetCityAPIType>(`/locations?term=${from}&location_types=airport`)
+        getCitysApi.get<TypeCitySuggestion>(`/locations?term=${from}&location_types=airport`)
                    .then( resp =>{
                     setFromCity([{
                           id:resp.data.locations[0].city.id,
@@ -29,7 +29,7 @@ export const useGetSuggestion = () => {
     }, [ from ]);
 
     useEffect(() => {
-        getCitysApi.get<GetCityAPIType>(`/locations?term=${to}&location_types=airport`)
+        getCitysApi.get<TypeCitySuggestion>(`/locations?term=${to}&location_types=airport`)
                    .then( resp =>{
                     setToCity([{
                           id:resp.data.locations[0].city.id,
