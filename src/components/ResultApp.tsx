@@ -1,10 +1,11 @@
-import React from "react"; 
+// import React, { useState } from "react"; 
 import Panel from "rsuite/lib/Panel";
 
 import "../css/style.css";
 
-const ResultApp = () => {
 
+const ResultApp = () => {
+  
 
   return (
     <Panel className="result_card" shaded>
