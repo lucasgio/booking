@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useState } from "react";
 import { getResultFlights } from "../api/getCitysApi";
-import { FormType } from "../interface/TypeCitySuggestion"
+import { useFlightContext } from "../components/UseContext";
+import { FormType } from "../interface/TypeCitySuggestion";
 import { TypeResultFlights } from "../interface/TypeResultsFlights";
 
 
 
 
+
 export const useFromSubmittion = () => {
-     const [result, setResult] = useState({});
     const [data, setData] = useState<FormType>({
 
         from:"Barcelona",
@@ -16,8 +17,7 @@ export const useFromSubmittion = () => {
         dateTo:new Date(),
     
     })    
-     
-    
+    const {setFlight} = useFlightContext();
     const { from,to,dateFrom,dateTo } = data;
     const departure = dateFrom?.toLocaleDateString();    
     const back    = dateTo?.toLocaleDateString();
@@ -27,16 +27,16 @@ export const useFromSubmittion = () => {
 
     const handlerSubmit = () => {
         
-        getResultFlights.get<TypeResultFlights>(`/flights?v=3&partner=skypicker&locale=en&flyFrom=${from}&to=${to}&dateFrom=${departure}&dateTo=${departure}&typeFlight=return&returnFrom=${back}&returnTo=${back}`)
+        getResultFlights.get<TypeResultFlights  >(`/flights?v=3&partner=skypicker&locale=en&flyFrom=${from}&to=${to}&dateFrom=${departure}&dateTo=${departure}&typeFlight=return&returnFrom=${back}&returnTo=${back}&limit=5`)
         .then( resp =>{
-            setResult(resp.data.data);
+            setFlight([...resp.data.data]);
         })
         .catch(console.log); 
     }
 
 
     
-
+  
 
   
 
@@ -49,7 +49,7 @@ export const useFromSubmittion = () => {
 
 
 
-    return {data,setData,handlerSubmit,result}
+    return {data,setData,handlerSubmit}
 
 
 }

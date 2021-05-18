@@ -8,7 +8,6 @@ export const useGetSuggestion = () => {
 
     const [fromCity, setFromCity] = useState<ItemDataType[]>([]);
     const [toCity, setToCity] = useState<ItemDataType[]>([]);
-
     const [form, setForm] = useState<FormType>({
         from:"Madrid",
         to:"Barcelona",

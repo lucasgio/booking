@@ -1,34 +1,35 @@
-import React, { useState } from 'react';
-import { Container,Panel} from 'rsuite';
+import FormApp from "./FormApp";
+import { useState } from "react";
+import { Container, Panel } from "rsuite";
+import { FlightsContext } from "./UseContext";
+import { Route } from "../interface/TypeResultsFlights";
+import { PanelApp } from "./PanelApp";
+import "../css/style.css";
 
-import FormApp from './FormApp';
-import ResultApp from './ResultApp';
 
 
-import '../css/style.css';
 
 const BookingApp = () => {
-
-
-  const [show, setShow] = useState(false);
+  const [flight, setFlight] = useState<Route[]>();
 
   return (
     <>
-      <Container className="show-container">
+      <FlightsContext.Provider value={{ flight, setFlight }}>
+        <Container className="show-container">
           <h2 className="title">Booking your preferred flight</h2>
           <Panel className="card" shaded>
-              <FormApp/>
-          </Panel>   
-      </Container>
+            <FormApp />
+          </Panel>
+        </Container>
 
-      <Container>
-          {
-            (!show)? <h6 className="info">No hay elementos :( </h6> : <ResultApp/>
-          }
-      </Container>
+        <Container>
+          {flight?.map((result) => {
+            return <PanelApp key={result.id} {...result}/>
+          })}
+        </Container>
+      </FlightsContext.Provider>
     </>
-  )
+  );
 };
-
 
 export default BookingApp;

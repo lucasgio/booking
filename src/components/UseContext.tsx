@@ -1,12 +1,12 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext } from "react";
 
 
 export type FlightType = {
-  flight: {}
-  setFlight:(f: {}) => void
+  flight: any
+  setFlight:(f: any) => void
 }
 export const FlightsContext = createContext<FlightType>({
-flight: 'Hello World', // set a default value
+flight:"", // set a default value
 setFlight: () => {},
 })
-export const useFlightContext = () => useContext(FlightsContext)
+export const useFlightContext = () => useContext(FlightsContext);
