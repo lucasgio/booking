@@ -1,3 +1,4 @@
+![booking](https://user-images.githubusercontent.com/57779728/122685184-e2e89800-d1d7-11eb-953d-01bbcf5a202b.png)
 # Booking React App - Typescript
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
